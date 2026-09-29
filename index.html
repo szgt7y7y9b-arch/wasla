@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>وصلة | نموذج أولي عامل</title>
+<style>
+:root{--bg:#F3EEE8;--card:#FFFFFF;--fg:#4A3F36;--mut:#8C7A68;--bd:#E4DACE;--pri:#4A3F36;--onpri:#FFFFFF;--sec:#E4DACE;--okbg:#EAF3DE;--okfg:#27500A;--dg:#D64541;--dgbg:#FCEBEB;--dgfg:#791F1F;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2A241F;--card:#3A322B;--fg:#F3EEE8;--mut:#B4A898;--bd:#5A4E44;--pri:#E4DACE;--onpri:#2A241F;--sec:#4A3F36;--okbg:#27500A;--okfg:#C0DD97;--dgbg:#501313;--dgfg:#F7C1C1}}
+:root[data-theme="dark"]{--bg:#2A241F;--card:#3A322B;--fg:#F3EEE8;--mut:#B4A898;--bd:#5A4E44;--pri:#E4DACE;--onpri:#2A241F;--sec:#4A3F36;--okbg:#27500A;--okfg:#C0DD97;--dgbg:#501313;--dgfg:#F7C1C1}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Tahoma,'Segoe UI',system-ui,Arial,sans-serif;font-size:15px;line-height:1.6}
+.app{max-width:480px;margin:0 auto;padding:16px 16px 100px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.logo{width:40px;height:40px;border-radius:50%;background:var(--pri);color:var(--onpri);display:flex;align-items:center;justify-content:center}
+.top b{font-size:20px}.top span{display:block;font-size:12px;color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+h2{font-size:17px;margin:0 0 4px}
+p.s{margin:0 0 10px;font-size:13px;color:var(--mut)}
+.view{display:none}.view.on{display:block}
+label{display:block;font-size:12px;color:var(--mut);margin:10px 0 4px}
+input,textarea{width:100%;font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:10px;direction:rtl}
+textarea{min-height:64px;resize:vertical}
+.row{display:flex;gap:10px}.row>*{flex:1}
+button{font:inherit;cursor:pointer}
+.btn{width:100%;min-height:46px;border-radius:12px;border:none;background:var(--pri);color:var(--onpri);font-weight:bold;display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 12px;text-decoration:none}
+.btn.sec{background:var(--sec);color:var(--fg)}
+.btn.dg{background:var(--dg);color:#fff}
+.btn+.btn{margin-top:8px}
+.st{border-radius:16px;padding:16px;display:flex;gap:12px;align-items:center;margin-bottom:12px;background:var(--card);border:1px solid var(--bd)}
+.st.ok{background:var(--okbg);color:var(--okfg);border-color:transparent}
+.st.out{background:var(--dgbg);color:var(--dgfg);border-color:transparent}
+.st .ic svg{width:30px;height:30px}
+.st b{display:block;font-size:16px}.st small{font-size:12px;opacity:.85}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.tile{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px}
+.tile small{color:var(--mut);font-size:12px;display:block}.tile b{font-size:20px}
+.sos{width:132px;height:132px;border-radius:50%;border:none;background:var(--dg);color:#fff;font-size:26px;font-weight:bold;display:block;margin:6px auto 4px}
+.sos:active{transform:scale(.97)}
+.center{text-align:center}
+.radar{display:block;margin:0 auto 6px;width:100%;max-width:230px}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+.tabs button{background:none;border:none;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;padding:4px 10px;min-width:64px}
+.tabs button.on{color:var(--fg);font-weight:bold}
+.tabs svg{width:20px;height:20px}
+.msg{font-size:12px;color:var(--mut);margin-top:8px;min-height:18px}
+.qrbox{background:#fff;border-radius:12px;padding:12px;width:230px;margin:0 auto 12px}
+.qrbox svg{width:100%;height:auto;display:block}
+.pre{white-space:pre-wrap;font-size:13px;background:var(--bg);border-radius:10px;padding:10px;line-height:1.9}
+.note{font-size:12px;color:var(--mut);text-align:center;margin-top:8px}
+#ov{position:fixed;inset:0;background:var(--dgbg);color:var(--dgfg);z-index:20;display:none;overflow:auto;padding:calc(20px + env(safe-area-inset-top,0px)) 18px calc(20px + env(safe-area-inset-bottom,0px))}
+#ov.on{display:block}
+#ov .in{max-width:440px;margin:0 auto;text-align:center}
+#ov .big svg{width:64px;height:64px;color:var(--dg)}
+#ov h1{font-size:22px;margin:8px 0 4px}
+#ov .btn+.btn{margin-top:8px}
+#ovS{border-radius:12px;padding:10px 12px;margin:0 0 14px;background:var(--card);color:var(--fg);font-size:14px;text-align:right}
+#ovS b{display:block}#ovS small{font-size:12px;color:var(--mut)}
+.bdg{position:absolute;top:2px;right:16px;width:9px;height:9px;border-radius:50%;background:var(--dg);display:none}
+.tabs button{position:relative}
+.fi{border-radius:14px;padding:12px;margin-bottom:10px;background:var(--card);border:1px solid var(--bd)}
+.fi.fsos{border-color:var(--dg)}.fi b{font-size:15px}.fi small{color:var(--mut);display:block;font-size:12px}
+.chip{display:inline-block;background:var(--sec);border-radius:20px;padding:1px 9px;font-size:11px;margin-right:6px}
+#smsb{position:fixed;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top,0px));z-index:30;background:var(--card);color:var(--fg);border:1px solid var(--bd);border-radius:16px;padding:12px 14px;box-shadow:0 6px 24px rgba(0,0,0,.25);display:none;max-width:456px;margin:0 auto;text-align:right;cursor:pointer}
+#smsb.on{display:block}
+#smsb .h{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mut);margin-bottom:4px}
+#smsb .h svg{width:16px;height:16px;color:var(--fg)}
+#smsb .t{font-size:14px;white-space:pre-wrap;word-break:break-word}
+details{margin-top:6px}summary{cursor:pointer;font-size:13px;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="top"><div class="logo" data-ic="heart"></div><div><b>وصلة</b><span>أمان .. دائماً</span></div></div>
+
+<section class="view on" id="v-home">
+<div class="st idle" id="st"><span class="ic" id="stIc"></span><div><b id="stT">حدد النطاق الآمن أولاً</b><small id="stS">من تبويب النطاق</small></div></div>
+<div class="card center">
+<svg class="radar" viewBox="0 0 200 200" role="img" aria-label="رسم النطاق الآمن وموقع الشخص">
+<circle cx="100" cy="100" r="60" fill="var(--sec)" fill-opacity=".6" stroke="var(--pri)" stroke-width="2" stroke-dasharray="6 4"/>
+<circle cx="100" cy="100" r="4" fill="var(--pri)"/>
+<circle id="dot" cx="100" cy="100" r="9" fill="var(--mut)" style="display:none"/>
+</svg>
+<small style="color:var(--mut)">المركز: المنزل · الدائرة: النطاق الآمن</small>
+</div>
+<div class="grid"><div class="tile"><small>المسافة عن المنزل</small><b id="dist">—</b></div><div class="tile"><small>آخر تحديث</small><b id="upd">—</b></div></div>
+<div class="card"><h2>زر الطوارئ</h2><p class="s">يحدد موقعك ويرسله تلقائياً للأهل، بدون أن تضغط إرسال</p><button class="sos" id="sos" type="button">SOS</button></div>
+<details class="card"><summary>محاكاة الخروج من النطاق (للعرض)</summary>
+<p class="s" style="margin-top:8px">لتجربة التنبيه بدون الخروج فعلياً من المكان</p>
+<button class="btn sec" id="simIn" type="button">محاكاة: داخل النطاق (50 م)</button>
+<button class="btn dg" id="simOut" type="button">محاكاة: خارج النطاق (350 م)</button>
+<button class="btn sec" id="simOff" type="button">إيقاف المحاكاة</button></details>
+<p class="note">نموذج أولي: الإرسال التلقائي المباشر يعمل بين جهازين مفتوحين على الصفحة، وإلا يعمل بوضع العرض. السوار والإشعار في الخلفية مرحلة لاحقة.</p>
+</section>
+
+<section class="view" id="v-zone">
+<div class="card"><h2>النطاق الآمن</h2><p class="s">وقفي في مكان المنزل ثم اضغطي الزر لتحديد المركز، وبعدها اختاري نصف القطر.</p>
+<button class="btn" id="setC" type="button"><span data-ic="pin"></span> تعيين موقعي الحالي كمركز</button>
+<div class="msg" id="zMsg"></div>
+<div class="tile" style="margin-top:8px"><small>مركز النطاق</small><b id="cTxt" style="font-size:15px">غير محدد</b></div>
+<label for="rad">نصف القطر: <b id="rv">300</b> م</label>
+<input type="range" id="rad" min="50" max="1000" step="50" value="300"></div>
+<div class="card"><h2>المراقبة</h2><p class="s">تتابع موقع هذا الجوال وتنبه عند الخروج من النطاق.</p>
+<button class="btn" id="mon" type="button"><span data-ic="sat"></span> <span id="monT">بدء المراقبة</span></button>
+<div class="msg" id="gMsg"></div></div>
+</section>
+
+<section class="view" id="v-qr">
+<div class="card center"><h2>رمز الاستجابة السريعة</h2><p class="s">يلصق على السوار. من يمسحه يرى بطاقة الطوارئ.</p>
+<div class="qrbox" id="qr"></div>
+<div class="msg" id="qMsg"></div>
+<button class="btn sec" id="cp" type="button">نسخ نص البطاقة</button></div>
+<div class="card"><h2>ما يظهر لمن يمسح الرمز</h2><div class="pre" id="cardTxt"></div></div>
+</section>
+
+<section class="view" id="v-follow">
+<div class="card"><h2>شاشة المتابع (الأهل)</h2><p class="s">هنا تصل تنبيهات الشخص فور حدوثها، مع موقعه.</p>
+<div class="tile"><small>الاتصال المباشر</small><b id="roomInfo" style="font-size:14px">جارٍ الفحص…</b></div></div>
+<div id="feed"></div>
+<p class="note" id="feedEmpty">لا توجد تنبيهات بعد. جرّب زر SOS من الرئيسية.</p>
+</section>
+
+<section class="view" id="v-profile">
+<div class="card"><h2>ملف الشخص</h2><p class="s">تظهر هذه البيانات في بطاقة الطوارئ. تُحفظ على هذا الجوال فقط.</p>
+<div class="row"><div><label for="fn">الاسم</label><input id="fn" placeholder="أم محمد"></div><div style="flex:.6"><label for="fa">العمر</label><input id="fa" inputmode="numeric" placeholder="72"></div></div>
+<label for="fc">الحالات الصحية</label><input id="fc" placeholder="السكري، ضغط الدم">
+<label for="fm">الأدوية والحساسية</label><input id="fm" placeholder="أدوية يومية، حساسية معينة">
+<label for="ft">كيف نتعامل معه/معها؟</label><textarea id="ft" placeholder="تكلم بهدوء، اذكر اسمها، اتصل بالابن"></textarea>
+<div class="row"><div><label for="fcn">جهة الاتصال</label><input id="fcn" placeholder="أحمد (الابن)"></div><div><label for="fcp">رقم الجوال</label><input id="fcp" inputmode="tel" placeholder="050 123 4567"></div></div>
+<button class="btn" id="save" type="button" style="margin-top:14px">حفظ</button>
+<div class="msg" id="pMsg"></div></div>
+</section>
+</div>
+
+<nav class="tabs" aria-label="التنقل">
+<button type="button" data-t="home" class="on"><span data-ic="home"></span>الرئيسية</button>
+<button type="button" data-t="zone"><span data-ic="pin"></span>النطاق</button>
+<button type="button" data-t="qr"><span data-ic="qr"></span>QR</button>
+<button type="button" data-t="follow"><span data-ic="bell"></span>المتابع<i class="bdg" id="bdg"></i></button>
+<button type="button" data-t="profile"><span data-ic="user"></span>الملف</button>
+</nav>
+
+<div id="smsb" role="status" aria-live="assertive"><div class="h"><span data-ic="sms"></span><b>رسالة جديدة</b><span>· الآن</span><span class="chip" id="smsTag"></span></div><div class="t" id="smsT"></div></div>
+<div id="ov" role="alertdialog" aria-modal="true" aria-labelledby="ovT"><div class="in">
+<div class="big" id="ovI"></div><h1 id="ovT"></h1><p id="ovD" style="margin:0 0 12px"></p><div id="ovS"></div>
+<div id="ovB"></div></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+var IC={"heart":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 512 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z\"></path></svg>","shield":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 512 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M466.5 83.7l-192-80a48.15 48.15 0 0 0-36.9 0l-192 80C27.7 91.1 16 108.6 16 128c0 198.5 114.5 335.7 221.5 380.3 11.8 4.9 25.1 4.9 36.9 0C360.1 472.6 496 349.3 496 128c0-19.4-11.7-36.9-29.5-44.3zM256.1 446.3l-.1-381 175.9 73.3c-3.3 151.4-82.1 261.1-175.8 307.7z\"></path></svg>","warn":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 576 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z\"></path></svg>","pin":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 384 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z\"></path></svg>","sat":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 512 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M305.44954,462.59c7.39157,7.29792,6.18829,20.09661-3.00038,25.00356-77.713,41.80281-176.72559,29.9105-242.34331-35.7082C-5.49624,386.28227-17.404,287.362,24.41381,209.554c4.89125-9.095,17.68975-10.29834,25.00318-3.00043L166.22872,323.36708l27.39411-27.39452c-.68759-2.60974-1.594-5.00071-1.594-7.81361a32.00407,32.00407,0,1,1,32.00407,32.00455c-2.79723,0-5.20378-.89075-7.79786-1.594l-27.40974,27.41015ZM511.9758,303.06732a16.10336,16.10336,0,0,1-16.002,17.00242H463.86031a15.96956,15.96956,0,0,1-15.89265-15.00213C440.46671,175.5492,336.45348,70.53427,207.03078,63.53328a15.84486,15.84486,0,0,1-15.00191-15.90852V16.02652A16.09389,16.09389,0,0,1,209.031.02425C372.25491,8.61922,503.47472,139.841,511.9758,303.06732Zm-96.01221-.29692a16.21093,16.21093,0,0,1-16.11142,17.29934H367.645a16.06862,16.06862,0,0,1-15.89265-14.70522c-6.90712-77.01094-68.118-138.91037-144.92467-145.22376a15.94,15.94,0,0,1-14.79876-15.89289V112.13393a16.134,16.134,0,0,1,17.29908-16.096C319.45132,104.5391,407.55627,192.64538,415.96359,302.7704Z\"></path></svg>","home":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 576 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z\"></path></svg>","qr":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 448 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z\"></path></svg>","user":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 640 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h274.9c-2.4-6.8-3.4-14-2.6-21.3l6.8-60.9 1.2-11.1 7.9-7.9 77.3-77.3c-24.5-27.7-60-45.5-99.9-45.5zm45.3 145.3l-6.8 61c-1.1 10.2 7.5 18.8 17.6 17.6l60.9-6.8 137.9-137.9-71.7-71.7-137.9 137.8zM633 268.9L595.1 231c-9.3-9.3-24.5-9.3-33.8 0l-37.8 37.8-4.1 4.1 71.8 71.7 41.8-41.8c9.3-9.4 9.3-24.5 0-33.9z\"></path></svg>","phone":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 512 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z\"></path></svg>","wa":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 448 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z\"></path></svg>","bell":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 448 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z\"></path></svg>","sms":"<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 512 512\" color=\"currentColor\" style=\"color:currentColor\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7 1.3 3 4.1 4.8 7.3 4.8 66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32zM128.2 304H116c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h12.3c6 0 10.4-3.5 10.4-6.6 0-1.3-.8-2.7-2.1-3.8l-21.9-18.8c-8.5-7.2-13.3-17.5-13.3-28.1 0-21.3 19-38.6 42.4-38.6H156c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8h-12.3c-6 0-10.4 3.5-10.4 6.6 0 1.3.8 2.7 2.1 3.8l21.9 18.8c8.5 7.2 13.3 17.5 13.3 28.1.1 21.3-19 38.6-42.4 38.6zm191.8-8c0 4.4-3.6 8-8 8h-16c-4.4 0-8-3.6-8-8v-68.2l-24.8 55.8c-2.9 5.9-11.4 5.9-14.3 0L224 227.8V296c0 4.4-3.6 8-8 8h-16c-4.4 0-8-3.6-8-8V192c0-8.8 7.2-16 16-16h16c6.1 0 11.6 3.4 14.3 8.8l17.7 35.4 17.7-35.4c2.7-5.4 8.3-8.8 14.3-8.8h16c8.8 0 16 7.2 16 16v104zm48.3 8H356c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h12.3c6 0 10.4-3.5 10.4-6.6 0-1.3-.8-2.7-2.1-3.8l-21.9-18.8c-8.5-7.2-13.3-17.5-13.3-28.1 0-21.3 19-38.6 42.4-38.6H396c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8h-12.3c-6 0-10.4 3.5-10.4 6.6 0 1.3.8 2.7 2.1 3.8l21.9 18.8c8.5 7.2 13.3 17.5 13.3 28.1.1 21.3-18.9 38.6-42.3 38.6z\"></path></svg>"};
+(function(){
+var S={p:{n:'',a:'',c:'',m:'',t:'',cn:'',cp:''},z:{lat:null,lng:null,r:300},mon:false};
+var pos=null,sim=null,watchId=null,alerted=false,ac=null;
+function $(i){return document.getElementById(i)}
+function ld(){try{var s=localStorage.getItem('wasla');if(s){var o=JSON.parse(s);if(o.p)S.p=o.p;if(o.z)S.z=o.z;}}catch(e){}}
+function sv(){try{localStorage.setItem('wasla',JSON.stringify({p:S.p,z:S.z}));}catch(e){}}
+function icons(root){(root||document).querySelectorAll('[data-ic]').forEach(function(e){e.innerHTML=IC[e.getAttribute('data-ic')]||''})}
+function hav(a,b,c,d){var R=6371000,t=Math.PI/180,dl=(c-a)*t,dn=(d-b)*t;var x=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a*t)*Math.cos(c*t)*Math.sin(dn/2)*Math.sin(dn/2);return 2*R*Math.asin(Math.sqrt(x))}
+function tm(){try{return new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}catch(e){return new Date().toTimeString().slice(0,5)}}
+function nm(){return S.p.n||'الشخص'}
+function normPhone(p){var d=(p||'').replace(/\D/g,'');if(/^05\d{8}$/.test(d))d='966'+d.slice(1);else if(d.indexOf('00')===0)d=d.slice(2);return d}
+function mapLink(){return pos?'https://www.google.com/maps?q='+pos.lat+','+pos.lng:''}
+
+function show(t){
+ ['home','zone','qr','follow','profile'].forEach(function(k){$('v-'+k).classList.toggle('on',k===t)});
+ document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-t')===t)});
+ if(t==='qr')makeQR();
+ if(t==='follow')$('bdg').style.display='none';
+ window.scrollTo(0,0);
+}
+document.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){show(b.getAttribute('data-t'))}});
+
+function cur(){
+ if(sim!==null)return{d:sim};
+ if(S.mon&&pos&&S.z.lat!==null)return{d:hav(S.z.lat,S.z.lng,pos.lat,pos.lng)};
+ return null;
+}
+function radar(c){
+ var dot=$('dot');
+ if(!c){dot.style.display='none';return}
+ var ratio=Math.min(c.d/S.z.r,1.6),rr=60*ratio,ang=0.6;
+ if(sim===null&&pos&&S.z.lat!==null){var dx=(pos.lng-S.z.lng)*Math.cos(S.z.lat*Math.PI/180)*111320,dy=(pos.lat-S.z.lat)*110540;ang=Math.atan2(-dy,dx)}
+ dot.setAttribute('cx',Math.round(100+rr*Math.cos(ang)));dot.setAttribute('cy',Math.round(100+rr*Math.sin(ang)));
+ dot.style.display='';dot.setAttribute('fill',c.d<=S.z.r?'#3B6D11':'#D64541');
+}
+function render(){
+ var c=cur(),st=$('st');
+ st.className='st idle';$('stIc').innerHTML=IC.shield;
+ if(!c){
+  $('stT').textContent=S.z.lat===null?'حدد النطاق الآمن أولاً':'المراقبة متوقفة';
+  $('stS').textContent=S.z.lat===null?'من تبويب النطاق':'ابدأ المراقبة من تبويب النطاق';
+  $('dist').textContent='—';
+ }else{
+  $('dist').textContent=Math.round(c.d)+' م';$('upd').textContent=tm();
+  if(c.d<=S.z.r){st.className='st ok';$('stT').textContent='داخل النطاق الآمن';$('stS').textContent=nm()+' في المنطقة المسموحة';alerted=false}
+  else{st.className='st out';$('stIc').innerHTML=IC.warn;$('stT').textContent='خارج النطاق الآمن';$('stS').textContent='تجاوز/تجاوزت الحد بـ '+Math.round(c.d-S.z.r)+' م';
+   if(!alerted){alerted=true;alertUI('zone',c.d)}}
+ }
+ radar(c);
+ $('cTxt').textContent=S.z.lat===null?'غير محدد':S.z.lat.toFixed(4)+' ، '+S.z.lng.toFixed(4);
+ $('monT').textContent=S.mon?'إيقاف المراقبة':'بدء المراقبة';
+}
+
+function beep(){try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();[0,450,900].forEach(function(t){setTimeout(function(){var o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=880;g.gain.value=.15;o.start();setTimeout(function(){o.stop()},280)},t)})}catch(e){}}
+function copy(t,m){try{navigator.clipboard.writeText(t).then(function(){m.textContent='تم النسخ'},function(){m.textContent='تعذّر النسخ'})}catch(e){m.textContent='تعذّر النسخ'}}
+var room=null,others=0,feed=[];
+function getFix(cb){
+ if(!navigator.geolocation){cb();return}
+ navigator.geolocation.getCurrentPosition(function(p){pos={lat:p.coords.latitude,lng:p.coords.longitude};cb()},function(){cb()},{enableHighAccuracy:true,timeout:6000,maximumAge:10000});
+}
+function deliver(kind,d){
+ var pl={k:kind,n:nm().slice(0,40),d:Math.round(d||0),t:Date.now()};
+ if(pos){pl.lat=pos.lat;pl.lng=pos.lng}
+ if(room){return room.emit('sos',pl).then(function(){return{mode:'live',n:others,pl:pl}},function(){return{mode:'demo',pl:pl}})}
+ return Promise.resolve({mode:'demo',pl:pl});
+}
+var smsTm=null;
+function showSms(x,mode){
+ var t=x.k==='sos'?'🆘 وصلة: طلب مساعدة عاجلة من '+x.n:'⚠️ تنبيه وصلة: '+x.n+' خارج النطاق الآمن (تبعد '+x.d+' م)';
+ if(x.lat!==null)t+='\nالموقع: https://www.google.com/maps?q='+x.lat+','+x.lng;
+ $('smsT').textContent=t;$('smsTag').textContent=mode==='live'?'مباشر':'محاكاة لجوال الأهل';
+ var b=$('smsb');b.classList.add('on');b.onclick=function(){b.classList.remove('on')};
+ clearTimeout(smsTm);smsTm=setTimeout(function(){b.classList.remove('on')},12000);
+ try{if(navigator.vibrate)navigator.vibrate([200,100,200])}catch(e){}
+}
+function addFeed(d,mode){
+ var lat=Number(d.lat),lng=Number(d.lng);
+ feed.unshift({k:d.k==='sos'?'sos':'zone',n:String(d.n||'الشخص').slice(0,40),d:Math.round(Number(d.d)||0),t:Number(d.t)||Date.now(),lat:isFinite(lat)&&d.lat!=null?lat:null,lng:isFinite(lng)&&d.lng!=null?lng:null,mode:mode});
+ renderFeed();
+ showSms(feed[0],mode);
+ if(!$('v-follow').classList.contains('on'))$('bdg').style.display='block';
+ if(mode==='live'){try{if(navigator.vibrate)navigator.vibrate([300,150,300])}catch(e){}beep()}
+}
+function renderFeed(){
+ var f=$('feed');f.innerHTML='';$('feedEmpty').style.display=feed.length?'none':'block';
+ feed.forEach(function(x){
+  var c=document.createElement('div');c.className='fi'+(x.k==='sos'?' fsos':'');
+  var b=document.createElement('b');b.textContent=(x.k==='sos'?'🆘 طلب مساعدة عاجلة من ':'⚠️ خروج من النطاق: ')+x.n;c.appendChild(b);
+  var sm=document.createElement('small');
+  var tt=new Date(x.t);var ts;try{ts=tt.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}catch(e){ts=''}
+  sm.textContent=ts+(x.k==='zone'&&x.d?' · تبعد '+x.d+' م عن المنزل':'');
+  var ch=document.createElement('span');ch.className='chip';ch.textContent=x.mode==='live'?'مباشر':'محاكاة';sm.appendChild(ch);c.appendChild(sm);
+  if(x.lat!==null){var a=document.createElement('a');a.className='btn sec';a.style.marginTop='8px';a.target='_blank';a.rel='noopener';a.href='https://www.google.com/maps?q='+x.lat+','+x.lng;a.textContent='فتح موقعه على الخريطة';c.appendChild(a)}
+  f.appendChild(c);
+ });
+}
+function roomInfo(){
+ $('roomInfo').textContent=room?('متصل · '+others+' جهاز آخر مفتوح الآن'):'غير متاح هنا · يعمل وضع العرض (محاكاة)';
+}
+function initRoom(){
+ try{
+  if(window.claude&&window.claude.use){
+   window.claude.use('room').then(function(r){
+    if(!r){roomInfo();return}
+    room=r;
+    r.on('sos',function(m){if(m.sameTab)return;addFeed(m.data||{},'live')},function(){room=null;roomInfo()});
+    r.onPeers(function(c){others=c.peers.filter(function(q){return!q.sameTab}).length;roomInfo()});
+    roomInfo();
+   },function(){roomInfo()});
+  }else roomInfo();
+ }catch(e){roomInfo()}
+}
+function alertUI(kind,d){
+ var sos=kind==='sos';
+ $('ovI').innerHTML=IC.warn;
+ $('ovT').textContent=sos?'طلب مساعدة عاجلة':nm()+' خارج النطاق الآمن';
+ $('ovD').textContent=sos?'يجري إبلاغ الأهل الآن':'تبعد '+Math.round(d)+' م عن المنزل · '+tm();
+ var so=$('ovS');so.innerHTML='';var b0=document.createElement('b');b0.textContent='جارٍ تحديد موقعك وإرساله تلقائياً…';so.appendChild(b0);
+ $('ovB').innerHTML='';
+ try{if(navigator.vibrate)navigator.vibrate([400,200,400,200,400])}catch(e){}
+ beep();$('ov').classList.add('on');
+ getFix(function(){
+  deliver(kind,d).then(function(r){
+   so.innerHTML='';var t=document.createElement('b'),sm=document.createElement('small');
+   if(r.mode==='live'){t.textContent='✓ تم إرسال الموقع تلقائياً';sm.textContent=r.n>0?'وصل إلى '+r.n+' جهاز متابع متصل الآن':'لا يوجد جهاز متابع مفتوح حالياً. استخدم الأزرار بالأسفل.'}
+   else{t.textContent='✓ تم إرسال الموقع تلقائياً إلى '+(S.p.cn||'الأهل')+' (وضع العرض)';sm.textContent='محاكاة: هذا الرقم لم يستقبل شيئاً فعلياً. في المنتج الحقيقي يرسل السوار أو الخادم رسالة SMS تلقائياً بدون ضغطة وبدون إنترنت. شاهد ما كان سيصلهم في تبويب المتابع.';addFeed(r.pl,'demo')}
+   so.appendChild(t);so.appendChild(sm);
+   var msg=sos?'🆘 وصلة: طلب مساعدة عاجلة من '+nm():'⚠️ تنبيه وصلة: '+nm()+' خارج النطاق الآمن (تبعد '+Math.round(d)+' م)';
+   var ml=mapLink();if(ml)msg+='\nالموقع: '+ml;
+   var b=$('ovB'),ph=normPhone(S.p.cp);
+   function link(cls,html,href){var a=document.createElement('a');a.className='btn '+cls;a.innerHTML=html;a.href=href;a.target='_blank';a.rel='noopener';b.appendChild(a)}
+   if(ph)link('dg','<span data-ic="phone"></span> اتصال بـ '+(S.p.cn||'الأهل'),'tel:+'+ph);
+   if(ph)link('','<span data-ic="sms"></span> إرسال رسالة SMS (احتياطي)','sms:+'+ph+'?&body='+encodeURIComponent(msg));
+   if(ml)link('sec','<span data-ic="pin"></span> فتح الموقع على الخريطة',ml);
+   if(!ph){var w=document.createElement('div');w.className='msg';w.textContent='أضف جهة اتصال من تبويب الملف لتفعيل الاتصال.';b.appendChild(w)}
+   var x=document.createElement('button');x.className='btn sec';x.type='button';x.textContent=sos?'إلغاء (إنذار خاطئ)':'إغلاق التنبيه';x.onclick=function(){$('ov').classList.remove('on')};b.appendChild(x);
+   icons(b);
+  });
+ });
+}
+
+function gErr(e){var m=$('gMsg');m.textContent=(e&&e.code===1)?'تم رفض إذن الموقع. فعّله من إعدادات المتصفح أو استخدم المحاكاة من الرئيسية.':'تعذّر تحديد الموقع الآن. جرّب مكاناً مكشوفاً أو استخدم المحاكاة.'}
+$('setC').onclick=function(){
+ var m=$('zMsg');
+ if(!navigator.geolocation){m.textContent='هذا المتصفح لا يدعم تحديد الموقع.';return}
+ m.textContent='جارٍ تحديد موقعك…';
+ navigator.geolocation.getCurrentPosition(function(p){S.z.lat=p.coords.latitude;S.z.lng=p.coords.longitude;pos={lat:p.coords.latitude,lng:p.coords.longitude};sv();m.textContent='تم تعيين المنزل كمركز للنطاق';render()},function(e){m.textContent=(e&&e.code===1)?'تم رفض إذن الموقع.':'تعذّر تحديد الموقع.'},{enableHighAccuracy:true,timeout:15000});
+};
+$('rad').oninput=function(){S.z.r=parseInt(this.value,10);$('rv').textContent=S.z.r;sv();render()};
+$('mon').onclick=function(){
+ if(S.mon){S.mon=false;if(watchId!==null&&navigator.geolocation)navigator.geolocation.clearWatch(watchId);watchId=null;$('gMsg').textContent='';render();return}
+ if(S.z.lat===null){$('gMsg').textContent='حدد مركز النطاق أولاً.';return}
+ if(!navigator.geolocation){$('gMsg').textContent='هذا المتصفح لا يدعم تحديد الموقع.';return}
+ S.mon=true;$('gMsg').textContent='المراقبة تعمل. أبقِ هذه الصفحة مفتوحة.';
+ watchId=navigator.geolocation.watchPosition(function(p){pos={lat:p.coords.latitude,lng:p.coords.longitude};render()},function(e){S.mon=false;gErr(e);render()},{enableHighAccuracy:true,maximumAge:5000});
+ render();
+};
+
+$('sos').onclick=function(){alertUI('sos',0)};
+$('simIn').onclick=function(){sim=50;alerted=false;render()};
+$('simOut').onclick=function(){sim=350;alerted=false;render()};
+$('simOff').onclick=function(){sim=null;alerted=false;render()};
+
+function cardText(){
+ var p=S.p,l=['وصلة | بطاقة طوارئ'];
+ l.push('الاسم: '+(p.n||'—')+(p.a?' ('+p.a+' سنة)':''));
+ if(p.c)l.push('الحالات الصحية: '+p.c);
+ if(p.m)l.push('الأدوية والحساسية: '+p.m);
+ if(p.t)l.push('طريقة التعامل: '+p.t);
+ if(p.cp)l.push('اتصل بـ '+(p.cn||'الأهل')+': '+p.cp);
+ return l.join('\n');
+}
+function makeQR(){
+ var t=cardText();$('cardTxt').textContent=t;var q=$('qr');q.innerHTML='';$('qMsg').textContent='';
+ if(!S.p.n){$('qMsg').textContent='أكمل ملف الشخص أولاً ليظهر الرمز.';return}
+ try{var qr=qrcode(0,'L');qr.addData(unescape(encodeURIComponent(t)));qr.make();q.innerHTML=qr.createSvgTag(4,0);}
+ catch(e){$('qMsg').textContent='تعذّر إنشاء الرمز. قلّل طول النص أو تأكد من الاتصال بالإنترنت.'}
+}
+$('cp').onclick=function(){copy(cardText(),$('qMsg'))};
+
+function fill(){var p=S.p;$('fn').value=p.n;$('fa').value=p.a;$('fc').value=p.c;$('fm').value=p.m;$('ft').value=p.t;$('fcn').value=p.cn;$('fcp').value=p.cp;$('rad').value=S.z.r;$('rv').textContent=S.z.r}
+$('save').onclick=function(){
+ S.p={n:$('fn').value.trim(),a:$('fa').value.trim(),c:$('fc').value.trim(),m:$('fm').value.trim(),t:$('ft').value.trim(),cn:$('fcn').value.trim(),cp:$('fcp').value.trim()};
+ sv();$('pMsg').textContent=S.p.n?'تم الحفظ':'أدخل الاسم على الأقل';if(S.p.n)setTimeout(function(){show('home');render()},500);
+};
+
+ld();fill();icons();render();initRoom();
+if(!S.p.n)show('profile');
+})();
+</script>
+</body>
+</html>
